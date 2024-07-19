@@ -1,0 +1,112 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="DMC.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="~/Otro/CSS/SiteMaster.css" />
+
+</head>
+<body>
+    <form runat="server">
+
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm purple-navbar">
+            <div class="container">
+                <asp:ImageButton runat="server" ID="Imglogo" ImageUrl="~/IMG/logo_DMC.jpg" alt="Inicio" Style="max-height: 100px; max-width: 100px; background-color: #6C116C; border-color: #6C116C;" OnClick="MenuInicio" />
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <asp:DropDownList runat="server" ID="ddlProductos" AutoPostBack="true" OnSelectedIndexChanged="ddlProductosFx" Style="height: 50px; width: 100%; max-width: 120px; background-color: #6C116C; color: white; border: 1px solid #6C116C; border-radius: 5px; margin-bottom: 10px;">
+                                <asp:ListItem Text="Productos" Value="" Selected="True" Disabled="True" />
+                                <asp:ListItem Text="Inventario" Value="Inventario" />
+                                <asp:ListItem Text="Bodega" Value="Bodega" />
+                                <asp:ListItem Text="Ingresar Movimiento" Value="IngresarMovimiento" />
+                                <asp:ListItem Text="Documentos" Value="Documentos" />
+                                <asp:ListItem Text="Movimiento por producto" Value="MovimientoProductos" />
+                                <asp:ListItem Text="Maestro Productos" Value="MaestroProductos" />
+                                <asp:ListItem Text="Agregar Producto" Value="AgregarProducto" />
+                                <asp:ListItem Text="Familias" Value="Familias" />
+                                <asp:ListItem Text="SubFamilias" Value="SubFamilias" />
+                            </asp:DropDownList>
+                        </li>
+                        <li class="nav-item">
+                            <asp:DropDownList runat="server" ID="ddlComercial" Style="height: 50px; width: 100%; max-width: 120px; background-color: #6C116C; color: white; border: 1px solid #6C116C; border-radius: 5px; margin-bottom: 10px;" AutoPostBack="true" OnSelectedIndexChanged="ddlComercialFx">
+                                <asp:ListItem Text="Comercial" Value="" Selected="True" Disabled="True" />
+                                <asp:ListItem Text="Maestro Cliente" Value="MaestroCliente" />
+                                <asp:ListItem Text="Lista Precios" Value="ListaPrecios" />
+                            </asp:DropDownList>
+                        </li>
+                        <li class="nav-item">
+                            <asp:DropDownList runat="server" ID="ddlDocumento" Style="height: 50px; width: 100%; max-width: 140px; background-color: #6C116C; color: white; border: 1px solid #6C116C; border-radius: 5px; margin-bottom: 10px;" AutoPostBack="true" OnSelectedIndexChanged="ddlDocumentoFx">
+                                <asp:ListItem Text="Documentos" Value="" Selected="True" Disabled="True" />
+                                <asp:ListItem Text="Emitir Documento" Value="EmitirDocumento" />
+                                <asp:ListItem Text="Listado Documentos" Value="ListadoDocumentos" />
+                            </asp:DropDownList>
+                        </li>
+                        <li class="nav-item">
+                            <asp:DropDownList runat="server" ID="ddlAdministrativo" Style="height: 50px; width: 100%; max-width: 140px; background-color: #6C116C; color: white; border: 1px solid #6C116C; border-radius: 5px; margin-bottom: 10px;" AutoPostBack="true" OnSelectedIndexChanged="ddlAdministrativoFx">
+                                <asp:ListItem Text="Administrativo" Value="" Selected="True" Disabled="True" />
+                                <asp:ListItem Text="Mantención Usuario" Value="Usuario" />
+                            </asp:DropDownList>
+                        </li>
+                        <li class="nav-item">
+                            <asp:DropDownList runat="server" ID="ddlSoporte" Style="height: 50px; width: 100%; max-width: 100px; background-color: #6C116C; color: white; border: 1px solid #6C116C; border-radius: 5px; margin-bottom: 10px;" AutoPostBack="true" OnSelectedIndexChanged="ddlSoporteFx">
+                                <asp:ListItem Text="Soporte" Value="" Selected="True" Disabled="True" />
+                                <asp:ListItem Text="Ingresar Orden" Value="Orden" />
+                                <asp:ListItem Text="Ingresar Trabajo" Value="Trabajo" />
+                            </asp:DropDownList>
+                        </li>
+                    </ul>
+                    <asp:Label ID="NombreyApellido" runat="server" Style="color: white; padding-right: 20px" />
+                </div>
+                <div>
+                    <asp:Button ID="btnLogout" class="nav-link" runat="server" Text="Salir" Style="background-color: #6C116C; color: yellow; border: none;" OnClick="BtnLogout_Click" />
+                </div>
+            </div>
+        </nav>
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <%--            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+            </footer>--%>
+        </div>
+
+    </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>
